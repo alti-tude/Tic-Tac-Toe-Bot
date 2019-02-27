@@ -20,6 +20,47 @@ import traceback
 TIME = 24
 MAX_PTS = 86
 
+class player():
+    def __init__(self):
+        import math
+        pass
+    
+    def move(self, board, old_move, flag):
+        if flag == 'o':
+            flag == 'x' #assuming x is the maximiser
+            
+		cells = board.find_valid_move_cells(old_move)
+
+    def minimax(board, old_mov, flag):
+		win_status = board.find_terminal_state()
+		if  win_status == ('x','WON') and flag == 'maximiser':
+			return old_mov, 100000
+		else if win_status == ('o','WON') and flag == 'minimiser':
+			return old_mov, 100000
+		else if win_status == ('NONE', 'DRAW'):
+			return old_mov, 0
+		
+        cells = board.find_valid_move_cells(old_mov)
+        
+        optimum = 0
+        if flag == 'minimiser':
+            optimum = 1000000
+        
+        for cur_mov in cells:
+
+            if flag == 'minimiser':
+                board.update(old_mov, cur_mov, 'o')
+                m = minimax(board, cur_mov, 'maximiser')
+                optimum = min(optimum, m)
+            else:
+                board.update(old_mov, cur_mov, 'x')
+                m = minimax(board, cur_mov, 'minimiser')
+                optimum = max(optimum, m)
+
+            board.big_boards_status[cur_mov[0]][cur_mov[1]][cur_mov[2]] = '-'
+            board.small_boards_status[cur_mov[0]][cur_mov[1]%3][cur_mov[2]%3] = '-'
+                
+
 class TimedOutExc(Exception):
 	pass
 
