@@ -31,14 +31,14 @@ class player():
     def move(self, board, old_mov, flag):
         if flag == 'o':
             flag = 'x' #assuming x is the maximiser
-        opt_mov, score = self.minimax(board, old_mov, 3, 'maximiser')
+        opt_mov, score = self.minimax(board, old_mov, 3, 'maximiser',-1000000,1000000)
         cells = board.find_valid_move_cells(old_mov)
         print cells
         print opt_mov
         return opt_mov
 
     #flag is minimiser('o')/maximiser('x') depending on type of player
-    def minimax(self, board, old_mov, depth, flag): 
+    def minimax(self, board, old_mov, depth, flag,alpha,beta):
         if depth == 0:
             return old_mov, self.utility(board)
         win_status = board.find_terminal_state()
@@ -54,25 +54,31 @@ class player():
         opt_mov = -1
         if flag == 'minimiser':
             optimum = 1000000
-        
+    
         for cur_mov in cells:
-
+            
             if flag == 'minimiser':
                 board.update(old_mov, cur_mov, 'o')
-                mov, m = self.minimax(board, cur_mov, depth-1,'maximiser')
+                mov, m = self.minimax(board, cur_mov, depth-1,'maximiser',alpha,beta)
                 if optimum > m:
                     optimum = m
                     opt_mov = cur_mov
+                beta = min( beta, optimum)
+                if beta <= alpha:
+                    break
+        
             else:
                 board.update(old_mov, cur_mov, 'x')
-                mov, m = self.minimax(board, cur_mov, depth-1,'minimiser')
+                mov, m = self.minimax(board, cur_mov, depth-1,'minimiser',alpha,beta)
                 if optimum < m:
                     optimum = m
                     opt_mov = cur_mov
-                    
+                alpha = max( alpha, optimum)
+                if beta <= alpha:
+                    break
+
             board.big_boards_status[cur_mov[0]][cur_mov[1]][cur_mov[2]] = '-'
             board.small_boards_status[cur_mov[0]][cur_mov[1]%3][cur_mov[2]%3] = '-'
-
         return opt_mov, optimum
 
     def utility(self,board):
