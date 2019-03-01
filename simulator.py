@@ -17,6 +17,8 @@ import time
 import copy
 import traceback
 import main
+import Team73_2
+import team11
 
 TIME = 24
 MAX_PTS = 86
@@ -56,6 +58,7 @@ class BigBoard:
         # small_boards_status shows which small_boards have been won/drawn and by which player
         self.big_boards_status = ([['-' for i in range(9)] for j in range(9)], [['-' for i in range(9)] for j in range(9)])
         self.small_boards_status = ([['-' for i in range(3)] for j in range(3)], [['-' for i in range(3)] for j in range(3)])
+        self.prev = time.time()
 
     def print_board(self):
         # for printing the state of the board
@@ -84,6 +87,8 @@ class BigBoard:
         print '=============================================='
         print
         print
+        print time.time()-self.prev
+        self.prev = time.time()
 
 
     def find_valid_move_cells(self, old_move):
@@ -254,8 +259,12 @@ def player_turn(game_board, old_move, obj, ply, opp, flg):
 def gameplay(obj1, obj2):				#game simulator
 
     game_board = BigBoard()
+    # game_board.update((-1,-1,-1), (0,0,0), 'o')
+    # game_board.update((0,0,0), (0,0,1), 'x')
+
     fl1 = 'x'
     fl2 = 'o'
+    # old_move = (0,0,1)
     old_move = (-1,-1,-1)
     WINNER = ''
     MESSAGE = ''
@@ -377,7 +386,7 @@ if __name__ == '__main__':
         obj2 = Manual_Player()
     elif option == '4':
         obj1 = main.player()
-        obj2 = Random_Player()
+        obj2 = team11.Team11()
     else:
         print 'Invalid option'
         sys.exit(1)
