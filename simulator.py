@@ -18,7 +18,11 @@ import copy
 import traceback
 import main
 import Team73_2
-import team11
+import team11_2
+from player_final import *
+import team47
+import anshita
+import agent
 
 TIME = 24
 MAX_PTS = 86
@@ -87,7 +91,7 @@ class BigBoard:
         print '=============================================='
         print
         print
-        print time.time()-self.prev
+        # print time.time()-self.prev
         self.prev = time.time()
 
 
@@ -385,8 +389,10 @@ if __name__ == '__main__':
         obj1 = Manual_Player()
         obj2 = Manual_Player()
     elif option == '4':
-        obj1 = main.player()
-        obj2 = team11.Team11()
+        # obj1 = main.player()
+        obj2 = main.player()
+        obj1 = agent.Agent()
+        # obj1 = team47.Team47()
     else:
         print 'Invalid option'
         sys.exit(1)
