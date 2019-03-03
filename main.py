@@ -16,9 +16,9 @@ class player():
         self.depth = 1
         self.maxTime = 23
         self.wts = [
-            [4,3,4],
-            [3,6,3],
-            [4,3,4]
+            [1,1,1],
+            [1,1,1],
+            [1,1,1]
         ]
         state = [['-' for j in range(3)] for i in range(3)]    
         
