@@ -17,12 +17,13 @@ import time
 import copy
 import traceback
 import main
-import Team73_4
-import team11
-import achi_wali
-import team38
+# import Team73_2
+# import team11_2
+#from player_final import *
 import team47
-import bot
+# import anshita
+# import agent
+# import achi_wali
 
 TIME = 24
 MAX_PTS = 86
@@ -389,10 +390,11 @@ if __name__ == '__main__':
         obj1 = Manual_Player()
         obj2 = Manual_Player()
     elif option == '4':
-        obj2 = main.player()
-        # obj1 = team47.Team47()
-        # obj2 = Team73_4.Team_73()
-        obj1 = bot.Bot()
+        # obj1 = main.player()
+        obj1 = main.player()
+        #obj2 = achi_wali.TeamBT()
+        # obj1 = agent.Agent()
+       	obj2 = team47.Team47()
     else:
         print 'Invalid option'
         sys.exit(1)
