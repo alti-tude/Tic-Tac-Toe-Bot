@@ -23,6 +23,7 @@ from player_final import *
 import team47
 import anshita
 import agent
+import achi_wali
 
 TIME = 24
 MAX_PTS = 86
@@ -390,8 +391,9 @@ if __name__ == '__main__':
         obj2 = Manual_Player()
     elif option == '4':
         # obj1 = main.player()
-        obj2 = main.player()
-        obj1 = agent.Agent()
+        obj1 = main.player()
+        obj2 = achi_wali.TeamBT()
+        # obj1 = agent.Agent()
         # obj1 = team47.Team47()
     else:
         print 'Invalid option'

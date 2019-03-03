@@ -88,10 +88,10 @@ class player():
             return old_mov, 0
         
         cells = board.find_valid_move_cells(old_mov)
-        optimum = -self.maxInt
+        optimum = -2*self.maxInt
         opt_mov = old_mov
         if flag == 'minimiser':
-            optimum = 100000000
+            optimum = 2*self.maxInt
 
         for cur_mov in cells:
             if flag == 'minimiser':
@@ -140,15 +140,15 @@ class player():
                 counto = 0
                 countx = 0
                 countd = 0
-                mulo = 0
-                mulx = 0
+                mulo = 1
+                mulx = 1
                 for j in range(3):
                     if board.small_boards_status[k][i][j] == p1:
                         countx+=1
-                        mulx+=sc[i][j]
+                        mulx*=sc[i][j]
                     if board.small_boards_status[k][i][j] == p2:
                         counto+=1
-                        mulo+=sc[i][j]
+                        mulo*=sc[i][j]
                     if board.small_boards_status[k][i][j] == 'd':
                         countd+=1
                 if counto == 2 and countx == 0 and countd == 0:
@@ -166,15 +166,15 @@ class player():
                 counto = 0
                 countx = 0
                 countd = 0
-                mulo = 0
-                mulx = 0
+                mulo = 1
+                mulx = 1
                 for j in range(3):
                     if board.small_boards_status[k][j][i] == p1:
                         countx+=1
-                        mulx+=sc[j][i]
+                        mulx*=sc[j][i]
                     if board.small_boards_status[k][j][i] == p2:
                         counto+=1
-                        mulo+=sc[j][i]
+                        mulo*=sc[j][i]
                     if board.small_boards_status[k][j][i] == 'd':
                         countd+=1
                 if counto == 2 and countx == 0 and countd == 0:
@@ -191,15 +191,15 @@ class player():
             counto = 0
             countx = 0
             countd = 0
-            mulo = 0
-            mulx = 0
+            mulo = 1
+            mulx = 1
             for i in range(3):
                 if board.small_boards_status[k][i][i] == p1:
                     countx+=1
-                    mulx+=sc[i][i]
+                    mulx*=sc[i][i]
                 if board.small_boards_status[k][i][i] == p2:
                     counto+=1
-                    mulo+=sc[i][i]
+                    mulo*=sc[i][i]
                 if board.small_boards_status[k][i][i] == 'd':
                     countd+=1
             if counto == 2 and countx == 0 and countd == 0:
@@ -216,15 +216,15 @@ class player():
             counto = 0
             countx = 0
             countd = 0
-            mulo = 0
-            mulx = 0
+            mulo = 1
+            mulx = 1
             for i in range(3):
                 if board.small_boards_status[k][i][2-i] == p1:
                     countx+=1
-                    mulx+=sc[i][2-i]
+                    mulx*=sc[i][2-i]
                 if board.small_boards_status[k][i][2-i] == p2:
                     counto+=1
-                    mulo+=sc[i][2-i]
+                    mulo*=sc[i][2-i]
                 if board.small_boards_status[k][i][2-i] == 'd':
                     countd+=1
             if counto == 2 and countx == 0 and countd == 0:
